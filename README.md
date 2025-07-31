@@ -1,4 +1,4 @@
-# YouTube Semantic Search
+# yt-aprtr
 
 A powerful tool for extracting YouTube subtitles and performing semantic search over them using state-of-the-art language models.
 
@@ -33,8 +33,8 @@ A powerful tool for extracting YouTube subtitles and performing semantic search 
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-org/youtube-semantic-search
-cd youtube-semantic-search
+git clone https://github.com/your-org/yt-aperture
+cd yt-aperture
 
 # Create virtual environment
 python3 -m venv venv
@@ -49,25 +49,25 @@ pip install -e .
 ### Extract Subtitles from YouTube
 ```bash
 # Extract subtitles from YouTube video
-./yss extract "https://youtube.com/watch?v=abc123" -n my_video
+./yt-aprtr extract "https://youtube.com/watch?v=abc123" -n my_video
 
 # Extract with custom language
-./yss extract "https://youtube.com/watch?v=abc123" -l es -n spanish_video
+./yt-aprtr extract "https://youtube.com/watch?v=abc123" -l es -n spanish_video
 ```
 
 ### Search Existing Transcripts
 ```bash
 # Search existing transcript
-./yss search "artificial intelligence" -t transcript.txt -r 10
+./yt-aprtr search "artificial intelligence" -t transcript.txt -r 10
 
 # Expand specific result for full context
-./yss search "consciousness" -t transcript.txt --expand 45 --context 5
+./yt-aprtr search "consciousness" -t transcript.txt --expand 45 --context 5
 ```
 
 ### Extract and Search in One Command
 ```bash
 # Extract and search in one command
-./yss auto "https://youtube.com/watch?v=abc123" "neural networks" -n interview -r 15
+./yt-aprtr auto "https://youtube.com/watch?v=abc123" "neural networks" -n interview -r 15
 ```
 
 ## Command Line Arguments
@@ -97,25 +97,25 @@ pip install -e .
 
 ### Extract YouTube Videos
 ```bash
-./yss extract "https://youtube.com/watch?v=dQw4w9WgXcQ" -n rick_roll
-./yss extract "https://youtube.com/watch?v=abc123" -l fr -n french_interview
+./yt-aprtr extract "https://youtube.com/watch?v=dQw4w9WgXcQ" -n rick_roll
+./yt-aprtr extract "https://youtube.com/watch?v=abc123" -l fr -n french_interview
 ```
 
 ### Search Content
 ```bash
-./yss search "machine learning algorithms" -t extractions/interview/interview.en.txt -r 15
-./yss search "startup advice" -t transcript.md --expand 123 --context 4
+./yt-aprtr search "machine learning algorithms" -t extractions/interview/interview.en.txt -r 15
+./yt-aprtr search "startup advice" -t transcript.md --expand 123 --context 4
 ```
 
 ### One-Step Extract and Search
 ```bash
-./yss auto "https://youtube.com/watch?v=abc123" "artificial intelligence" -n ai_talk -r 20
+./yt-aprtr auto "https://youtube.com/watch?v=abc123" "artificial intelligence" -n ai_talk -r 20
 ```
 
 ## Workflow
 
-1. **Extract**: Extract subtitles from YouTube videos using `yss extract`
-2. **Search**: Search transcripts using `yss search` - Get brief snippets with IDs
+1. **Extract**: Extract subtitles from YouTube videos using `yt-aprtr extract`
+2. **Search**: Search transcripts using `yt-aprtr search` - Get brief snippets with IDs
 3. **Browse**: Review the concise results to find interesting matches
 4. **Expand**: Use `--expand [ID]` to get full context for specific results
 
@@ -138,7 +138,7 @@ Found 10 results:
     Rails has been used to build millions of applications including Shopify and GitHub. That's incredibly gratifying to see.
 
 Use --expand [ID] to see full context around a specific result
-Example: ./yss search "query" -t transcript.txt --expand 123 --context 3
+Example: ./yt-aprtr search "query" -t transcript.txt --expand 123 --context 3
 ```
 
 ### Expanded Context
@@ -172,7 +172,7 @@ Context paragraphs: 3
 
 ## Files
 
-- `yss`: Main CLI entry point
+- `yt-aprtr`: Main CLI entry point
 - `src/`: Source code directory
   - `core/`: Core functionality (extractor, searcher, processor, cache)
   - `cli/`: Command line interface
