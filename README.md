@@ -67,7 +67,7 @@ This tool is specifically designed for AI-assisted analysis. Launch Claude Code 
 
 ```bash
 cd yt-aperture
-claude-code
+claude
 ```
 
 Claude Code can then:

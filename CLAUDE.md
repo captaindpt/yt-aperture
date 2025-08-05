@@ -54,6 +54,14 @@ source venv/bin/activate
 pip install -e .
 ```
 
+**IMPORTANT FOR CLAUDE CODE**: Always ensure the virtual environment is properly activated before running yt-aprtr commands. If you encounter "ModuleNotFoundError" or dependency issues:
+
+1. First check if venv exists and is properly set up: `ls -la venv/`
+2. If venv is corrupted or missing, recreate it: `rm -rf venv && python3 -m venv venv`
+3. Always activate the virtual environment before running commands: `source venv/bin/activate`
+4. Then install dependencies: `pip install -e .`
+5. All yt-aprtr commands must be prefixed with: `source venv/bin/activate && ./yt-aprtr ...`
+
 ### Usage Examples
 ```bash
 # Extract subtitles from YouTube
@@ -287,6 +295,10 @@ Synthesis of insights and key takeaways.
 ```
 
 This ensures analysis is preserved, referenceable, and provides a structured record of AI-driven insights while also being communicated to the user.
+
+## Task Management for Video Analysis
+
+**IMPORTANT**: For simple video analysis requests (e.g., "analyze this video and extract main points"), do NOT use the TodoWrite tool or create task lists. These are straightforward single-purpose tasks that should be completed directly without overhead of task management. Only use todo lists for complex multi-step development tasks that require planning and tracking.
 
 ## Common Workflows
 
