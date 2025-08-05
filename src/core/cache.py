@@ -1,6 +1,7 @@
 """Embedding cache management."""
 
 import pickle
+import os
 from pathlib import Path
 from typing import List, Dict, Any, Optional
 import numpy as np
@@ -67,14 +68,23 @@ class EmbeddingCache:
         except Exception as e:
             print(f"⚠️  Error saving cache: {e}")
     
-    def is_cache_valid(self, transcript_name: str, chunks: List[Dict[str, Any]]) -> bool:
-        """Check if cached data is still valid for current chunks."""
-        cached_data = self.load_cache(transcript_name)
-        if not cached_data:
+    def is_cache_valid(self, transcript_name: str, transcript_path: Path) -> bool:
+        """Check if cached data is still valid for the transcript file."""
+        if not transcript_path.exists():
+            return False
+            
+        embeddings_path, chunks_path = self.get_cache_paths(transcript_name)
+        
+        # Check if cache files exist
+        if not (embeddings_path.exists() and chunks_path.exists()):
             return False
         
-        _, cached_chunks = cached_data
-        return len(cached_chunks) == len(chunks)
+        # Compare file modification times
+        transcript_mtime = transcript_path.stat().st_mtime
+        cache_mtime = min(embeddings_path.stat().st_mtime, chunks_path.stat().st_mtime)
+        
+        # Cache is valid if it's newer than the transcript file
+        return cache_mtime >= transcript_mtime
     
     def clear_cache(self, transcript_name: Optional[str] = None) -> None:
         """Clear cache for specific transcript or all caches."""

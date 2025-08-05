@@ -1,8 +1,15 @@
 # yt-aprtr
 
-A powerful tool for extracting YouTube subtitles and performing semantic search over them using state-of-the-art language models.
+A powerful tool designed for Claude Code and AI agents to extract YouTube subtitles and perform semantic search over video content using state-of-the-art language models.
+
+> **Built for AI Analysis**: This repository is specifically designed to be used with Claude Code or other AI agents to read, analyze, and explore YouTube video content through natural language queries.
 
 ## Features
+
+**AI-First Design**
+- Built for Claude Code and AI agents to analyze video content
+- Natural language interface perfect for AI-driven exploration
+- Structured output optimized for AI consumption
 
 **YouTube Subtitle Extraction**
 - Extract subtitles from any YouTube video
@@ -10,11 +17,11 @@ A powerful tool for extracting YouTube subtitles and performing semantic search 
 - Automatic cleaning and formatting
 - VTT to clean text conversion
 
-**Semantic Search**
+**Semantic Search for AI Analysis**
 - Natural language search over transcript content
-- Powered by sentence transformers
-- Cosine similarity ranking
-- Expandable context viewing
+- Powered by sentence transformers for AI understanding
+- Cosine similarity ranking with contextual results
+- Expandable context viewing for deep analysis
 
 **Performance Optimized**
 - Embedding caching for fast repeated searches
@@ -27,12 +34,12 @@ A powerful tool for extracting YouTube subtitles and performing semantic search 
 - Environment-based configuration
 - Type hints and documentation
 
-## Quick Start
+## Quick Start for Claude Code & AI Agents
 
-### Installation
+### Setup for AI Analysis
 
 ```bash
-# Clone the repository
+# Clone and setup for Claude Code
 git clone https://github.com/your-org/yt-aperture
 cd yt-aperture
 
@@ -42,31 +49,37 @@ source venv/bin/activate
 
 # Install dependencies
 pip install -e .
+
+# Now your AI agent can analyze any YouTube video content
 ```
 
-## Usage
+## Usage for AI Analysis
 
-### Extract Subtitles from YouTube
+### Perfect for Claude Code Workflows
+
+This tool is designed to work seamlessly with Claude Code and other AI agents. Here are the key workflows:
+
+### Extract Subtitles for AI Analysis
 ```bash
-# Extract subtitles from YouTube video
+# Extract subtitles from any YouTube video for AI analysis
 ./yt-aprtr extract "https://youtube.com/watch?v=abc123" -n my_video
 
-# Extract with custom language
+# Extract with custom language for multilingual analysis
 ./yt-aprtr extract "https://youtube.com/watch?v=abc123" -l es -n spanish_video
 ```
 
-### Search Existing Transcripts
+### AI-Optimized Semantic Search
 ```bash
-# Search existing transcript
+# Search transcripts using natural language - perfect for AI queries
 ./yt-aprtr search "artificial intelligence" -t transcript.txt -r 10
 
-# Expand specific result for full context
+# Expand specific results with full context for deeper AI analysis
 ./yt-aprtr search "consciousness" -t transcript.txt --expand 45 --context 5
 ```
 
-### Extract and Search in One Command
+### One-Step Extract & Analyze
 ```bash
-# Extract and search in one command
+# Extract and immediately search - ideal for AI-driven exploration
 ./yt-aprtr auto "https://youtube.com/watch?v=abc123" "neural networks" -n interview -r 15
 ```
 
@@ -112,12 +125,13 @@ pip install -e .
 ./yt-aprtr auto "https://youtube.com/watch?v=abc123" "artificial intelligence" -n ai_talk -r 20
 ```
 
-## Workflow
+## AI-Optimized Workflow
 
-1. **Extract**: Extract subtitles from YouTube videos using `yt-aprtr extract`
-2. **Search**: Search transcripts using `yt-aprtr search` - Get brief snippets with IDs
-3. **Browse**: Review the concise results to find interesting matches
-4. **Expand**: Use `--expand [ID]` to get full context for specific results
+1. **Extract**: Use Claude Code to extract subtitles from any YouTube video
+2. **Search**: Ask AI to search transcripts using natural language queries
+3. **Discover**: Let AI discover relevant content through semantic understanding
+4. **Analyze**: Expand interesting results for deeper AI-driven analysis
+5. **Synthesize**: Use AI to synthesize insights across multiple video sources
 
 ## Sample Output
 
@@ -137,7 +151,7 @@ Found 10 results:
 [512] DHH (Score: 0.776)
     Rails has been used to build millions of applications including Shopify and GitHub. That's incredibly gratifying to see.
 
-Use --expand [ID] to see full context around a specific result
+Perfect for AI Analysis: Use --expand [ID] to get full context for Claude Code or other AI agents
 Example: ./yt-aprtr search "query" -t transcript.txt --expand 123 --context 3
 ```
 
@@ -184,14 +198,15 @@ Context paragraphs: 3
 - `cache/`: Directory containing cached embeddings (created on first search)
 - `venv/`: Virtual environment directory
 
-## Tips
+## Tips for AI-First Analysis
 
-- **Use descriptive queries** for better semantic matching
-- **Browse snippets first** to quickly find relevant content
-- **Expand interesting results** to see full context
-- **Try different phrasings** if initial results aren't perfect
-- **Check similarity scores** to gauge relevance (higher = better match)
-- **Use the auto command** to extract and search in one step
+- **Use natural language queries** - perfect for AI-driven exploration
+- **Let AI discover patterns** through semantic understanding
+- **Expand results for Claude Code** to get full context for analysis
+- **Try conversational queries** that mirror how you'd ask an AI
+- **Leverage similarity scores** to help AI gauge relevance
+- **Use auto command** for streamlined AI workflows
+- **Synthesize insights** across multiple videos using AI analysis
 
 ## Technical Details
 

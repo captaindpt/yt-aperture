@@ -34,6 +34,16 @@ class SemanticSearcher:
         
         self.transcript_name = transcript_path.stem
         
+        # Try to load from cache first
+        if self.cache.is_cache_valid(self.transcript_name, transcript_path):
+            print("Loading cached data...")
+            cached_data = self.cache.load_cache(self.transcript_name)
+            if cached_data:
+                self.embeddings, self.chunks = cached_data
+                print(f"✅ Using cached {len(self.chunks)} chunks and embeddings")
+                return
+        
+        # Cache invalid/missing - process from scratch
         print("Loading transcript...")
         with open(transcript_path, 'r', encoding='utf-8') as f:
             content = f.read()
@@ -44,22 +54,13 @@ class SemanticSearcher:
         
         print(f"Created {len(self.chunks)} chunks from transcript")
         
-        # Load or create embeddings
-        self._load_or_create_embeddings()
+        # Create embeddings
+        self._create_embeddings()
     
-    def _load_or_create_embeddings(self) -> None:
-        """Load cached embeddings or create new ones."""
+    def _create_embeddings(self) -> None:
+        """Create embeddings for loaded chunks."""
         if not self.transcript_name:
             raise ValueError("No transcript loaded")
-        
-        # Try to load from cache
-        if self.cache.is_cache_valid(self.transcript_name, self.chunks):
-            print("Loading cached embeddings...")
-            cached_data = self.cache.load_cache(self.transcript_name)
-            if cached_data:
-                self.embeddings, _ = cached_data
-                print("✅ Using cached embeddings")
-                return
         
         print("Creating embeddings for all chunks...")
         texts = [chunk['content'] for chunk in self.chunks]
