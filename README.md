@@ -1,218 +1,157 @@
-# yt-aprtr
+# YouTube Semantic Search (yt-aperture)
 
-A powerful tool designed for Claude Code and AI agents to extract YouTube subtitles and perform semantic search over video content using state-of-the-art language models.
+A powerful Python tool for extracting YouTube subtitles and performing semantic search over video content using state-of-the-art sentence transformer models. Built specifically for AI-assisted video content analysis with Claude Code.
 
-> **Built for AI Analysis**: This repository is specifically designed to be used with Claude Code or other AI agents to read, analyze, and explore YouTube video content through natural language queries.
+## What It Does
 
-## Features
+**Extract YouTube Subtitles**: Downloads and cleans subtitles from any YouTube video using yt-dlp, supporting multiple languages and auto-generated captions.
 
-**AI-First Design**
-- Built for Claude Code and AI agents to analyze video content
-- Natural language interface perfect for AI-driven exploration
-- Structured output optimized for AI consumption
+**Semantic Search**: Performs natural language search over transcript content using sentence embeddings and cosine similarity ranking. Find specific topics, concepts, or discussions without exact keyword matching.
 
-**YouTube Subtitle Extraction**
-- Extract subtitles from any YouTube video
-- Support for multiple languages
-- Automatic cleaning and formatting
-- VTT to clean text conversion
+**AI-Optimized Workflows**: Designed for Claude Code and AI agents to analyze video content through conversational queries and contextual exploration.
 
-**Semantic Search for AI Analysis**
-- Natural language search over transcript content
-- Powered by sentence transformers for AI understanding
-- Cosine similarity ranking with contextual results
-- Expandable context viewing for deep analysis
+## Key Features
 
-**Performance Optimized**
-- Embedding caching for fast repeated searches
-- Batch processing for large transcripts
-- Efficient chunking strategies
+- **Fast Performance**: File-based embedding cache eliminates redundant processing - first search creates embeddings (~3-5s), subsequent searches are near-instant
+- **Intelligent Chunking**: Transcripts split into 4-6 sentence segments for optimal search granularity
+- **Context Expansion**: View surrounding content for any search result with configurable context windows
+- **Multi-format Support**: Works with speaker-formatted transcripts and plain text
+- **CLI Interface**: Simple commands for extraction, search, and combined workflows
 
-**Developer Friendly**
-- Clean modular architecture
-- Comprehensive CLI interface
-- Environment-based configuration
-- Type hints and documentation
+## Technical Architecture
 
-## Quick Start for Claude Code & AI Agents
+- **Embedding Model**: `all-MiniLM-L6-v2` sentence transformer (384-dimensional vectors)
+- **Search Engine**: Cosine similarity ranking with semantic understanding
+- **Caching System**: Per-transcript embedding cache with file modification validation
+- **Text Processing**: Intelligent chunking and snippet extraction for various transcript formats
 
-### Setup for AI Analysis
+## Installation
 
 ```bash
-# Clone and setup for Claude Code
 git clone https://github.com/your-org/yt-aperture
 cd yt-aperture
-
-# Create virtual environment
 python3 -m venv venv
 source venv/bin/activate
-
-# Install dependencies
 pip install -e .
-
-# Now your AI agent can analyze any YouTube video content
 ```
 
-## Usage for AI Analysis
+## Basic Usage
 
-### Perfect for Claude Code Workflows
-
-This tool is designed to work seamlessly with Claude Code and other AI agents. Here are the key workflows:
-
-### Extract Subtitles for AI Analysis
+### Extract Subtitles
 ```bash
-# Extract subtitles from any YouTube video for AI analysis
-./yt-aprtr extract "https://youtube.com/watch?v=abc123" -n my_video
+# Extract from YouTube video
+./yt-aprtr extract "https://youtube.com/watch?v=VIDEO_ID" -n my_video
 
-# Extract with custom language for multilingual analysis
-./yt-aprtr extract "https://youtube.com/watch?v=abc123" -l es -n spanish_video
-```
-
-### AI-Optimized Semantic Search
-```bash
-# Search transcripts using natural language - perfect for AI queries
-./yt-aprtr search "artificial intelligence" -t transcript.txt -r 10
-
-# Expand specific results with full context for deeper AI analysis
-./yt-aprtr search "consciousness" -t transcript.txt --expand 45 --context 5
-```
-
-### One-Step Extract & Analyze
-```bash
-# Extract and immediately search - ideal for AI-driven exploration
-./yt-aprtr auto "https://youtube.com/watch?v=abc123" "neural networks" -n interview -r 15
-```
-
-## Command Line Arguments
-
-### Extract Command
-- `url`: YouTube video URL (required)
-- `-l, --language`: Subtitle language code (default: en)
-- `-n, --name`: Custom output filename
-- `-o, --output-dir`: Output directory (default: current)
-
-### Search Command
-- `query`: Search query (required for search mode)
-- `-t, --transcript`: Transcript file path (required)
-- `-r, --results`: Number of results (default: 10)
-- `-e, --expand`: Expand specific result ID
-- `-c, --context`: Context chunks for expand (default: 3)
-
-### Auto Command (Extract + Search)
-- `url`: YouTube video URL (required)
-- `query`: Search query (required)
-- `-l, --language`: Subtitle language code (default: en)
-- `-n, --name`: Custom output filename
-- `-o, --output-dir`: Output directory (default: current)
-- `-r, --results`: Number of results (default: 10)
-
-## Examples
-
-### Extract YouTube Videos
-```bash
-./yt-aprtr extract "https://youtube.com/watch?v=dQw4w9WgXcQ" -n rick_roll
-./yt-aprtr extract "https://youtube.com/watch?v=abc123" -l fr -n french_interview
+# With custom language
+./yt-aprtr extract "https://youtube.com/watch?v=VIDEO_ID" -l es -n spanish_video
 ```
 
 ### Search Content
 ```bash
-./yt-aprtr search "machine learning algorithms" -t extractions/interview/interview.en.txt -r 15
-./yt-aprtr search "startup advice" -t transcript.md --expand 123 --context 4
+# Semantic search
+./yt-aprtr search "artificial intelligence" -t transcript.txt -r 10
+
+# Expand specific result with context
+./yt-aprtr search "machine learning" -t transcript.txt --expand 42 --context 3
 ```
 
-### One-Step Extract and Search
+### Extract and Search Combined
 ```bash
-./yt-aprtr auto "https://youtube.com/watch?v=abc123" "artificial intelligence" -n ai_talk -r 20
+# One command workflow
+./yt-aprtr auto "https://youtube.com/watch?v=VIDEO_ID" "neural networks" -n interview -r 15
 ```
 
-## AI-Optimized Workflow
+## Using with Claude Code
 
-1. **Extract**: Use Claude Code to extract subtitles from any YouTube video
-2. **Search**: Ask AI to search transcripts using natural language queries
-3. **Discover**: Let AI discover relevant content through semantic understanding
-4. **Analyze**: Expand interesting results for deeper AI-driven analysis
-5. **Synthesize**: Use AI to synthesize insights across multiple video sources
+This tool is specifically designed for AI-assisted analysis. Launch Claude Code in the repository directory:
+
+```bash
+cd yt-aperture
+claude-code
+```
+
+Claude Code can then:
+- Extract subtitles from any YouTube video you provide
+- Search transcript content using natural language queries
+- Analyze themes, extract insights, and synthesize findings
+- Create structured analysis reports in markdown format
+
+**AI Instructions**: Claude Code will automatically read [`CLAUDE.md`](./CLAUDE.md) for detailed usage patterns, command examples, and analysis workflows optimized for AI agents.
 
 ## Sample Output
 
-### Search Results
 ```
-Searching for: 'Ruby on Rails'
-Results: 10
+🔍 Searching for: 'startup advice'
 
-Found 10 results:
+🎯 Found 10 results:
 
-[245] DHH (Score: 0.832)
-    Ruby on Rails is a web development framework I created. It's designed to make programming web applications easier and more enjoyable.
+[156] Speaker (Score: 0.847)
+    The most important thing for early-stage startups is to focus on product-market fit before anything else.
 
-[387] DHH (Score: 0.798)
-    The philosophy behind Rails is convention over configuration. We make decisions so developers don't have to make them repeatedly.
+[203] Speaker (Score: 0.792)
+    Don't scale your team until you've validated that people actually want what you're building.
 
-[512] DHH (Score: 0.776)
-    Rails has been used to build millions of applications including Shopify and GitHub. That's incredibly gratifying to see.
+[089] Speaker (Score: 0.761)
+    Talking to customers daily is not optional - it's the difference between success and failure.
 
-Perfect for AI Analysis: Use --expand [ID] to get full context for Claude Code or other AI agents
-Example: ./yt-aprtr search "query" -t transcript.txt --expand 123 --context 3
+💡 Use --expand [ID] to see full context around a specific result
 ```
 
-### Expanded Context
-```
-Expanding result ID: 245
-Context paragraphs: 3
-
-======================================================================
-**DHH:** The satisfaction of driving a race car is driving it at the edge of adhesion, as we call it, where you're essentially just a tiny movement away from spinning out. That balance of danger and skill is what's so intoxicating.
-
-**Interviewer:** For someone who became a legendary programmer, you officially got into programming late in life. Can you tell me about your journey?
-
->>> MAIN RESULT <<<
-**DHH:** Ruby on Rails is a web development framework I created. It's designed to make programming web applications easier and more enjoyable. The philosophy behind Rails is convention over configuration - we make decisions so developers don't have to make them repeatedly.
->>> END RESULT <<<
-
-**DHH:** This approach has allowed millions of developers to build applications faster and with less complexity. It's been used for everything from small personal projects to massive applications like Shopify and GitHub.
-
-**Interviewer:** What inspired you to create Rails in the first place?
-======================================================================
+Expand for full context:
+```bash
+./yt-aprtr search "startup advice" -t transcript.txt --expand 156 --context 2
 ```
 
-## How It Works
+## Performance Characteristics
 
-1. **Chunking**: The transcript is split into paragraph-level chunks
-2. **Embedding**: Each chunk is converted to a vector representation using sentence transformers
-3. **Similarity**: Your query is embedded and compared to all chunks using cosine similarity
-4. **Snippets**: Brief 2-sentence previews are extracted from matches
-5. **Expansion**: Full context with surrounding paragraphs available on demand
-6. **Caching**: Embeddings are cached locally to speed up future searches
+- **First Search**: Downloads sentence transformer model (~90MB), creates embeddings for transcript chunks
+- **Subsequent Searches**: Uses cached embeddings for near-instant results
+- **Memory Usage**: ~2GB RAM recommended for model loading
+- **Cache Storage**: ~5MB per transcript for embeddings and chunks
 
-## Files
+## Project Structure
 
-- `yt-aprtr`: Main CLI entry point
-- `src/`: Source code directory
-  - `core/`: Core functionality (extractor, searcher, processor, cache)
-  - `cli/`: Command line interface
-  - `config/`: Configuration settings
-- `pyproject.toml`: Modern Python packaging configuration
-- `requirements.txt`: Python dependencies
-- `README.md`: This documentation
-- `extractions/`: Directory containing extracted YouTube subtitles (created on first extraction)
-- `cache/`: Directory containing cached embeddings (created on first search)
-- `venv/`: Virtual environment directory
+```
+yt-aperture/
+├── src/core/           # Core functionality (extractor, searcher, processor, cache)
+├── extractions/        # Extracted video transcripts (auto-created)
+├── cache/             # Embedding cache storage (auto-created)
+├── yt-aprtr           # Main executable script
+├── CLAUDE.md          # AI agent instructions and technical examples
+├── pyproject.toml     # Python packaging configuration
+└── requirements.txt   # Dependencies
+```
 
-## Tips for AI-First Analysis
+## Dependencies
 
-- **Use natural language queries** - perfect for AI-driven exploration
-- **Let AI discover patterns** through semantic understanding
-- **Expand results for Claude Code** to get full context for analysis
-- **Try conversational queries** that mirror how you'd ask an AI
-- **Leverage similarity scores** to help AI gauge relevance
-- **Use auto command** for streamlined AI workflows
-- **Synthesize insights** across multiple videos using AI analysis
+- **yt-dlp**: YouTube video/subtitle downloading
+- **sentence-transformers**: Semantic embedding generation  
+- **scikit-learn**: Cosine similarity calculations
+- **numpy**: Numerical operations
+- **torch**: PyTorch backend for transformers
 
-## Technical Details
+## Configuration
 
-- Uses the `all-MiniLM-L6-v2` sentence transformer model
-- Embeddings are 384-dimensional vectors
-- Cosine similarity is used for ranking
-- Results include similarity scores (0-1 scale)
-- First run creates ~3000 embeddings for the transcript chunks
-- Subsequent searches are near-instantaneous thanks to caching 
+Set environment variables to customize behavior:
+```bash
+export YSS_MODEL_NAME="all-MiniLM-L6-v2"  # Sentence transformer model
+export YSS_CACHE_DIR="cache"              # Cache directory
+export YSS_DEFAULT_RESULTS="10"           # Default number of results
+```
+
+## Development
+
+```bash
+# Run tests
+pytest tests/
+
+# Code formatting
+black src/ tests/
+
+# Type checking  
+mypy src/
+```
+
+## License
+
+MIT License - see LICENSE file for details.

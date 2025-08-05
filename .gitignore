@@ -47,7 +47,6 @@ cache/
 # Project development files - not needed for tool publication
 LOGBOOK.md
 MIGRATION.md
-CLAUDE.md
 
 # Any processed video transcripts or analysis files
 *.transcript.md
